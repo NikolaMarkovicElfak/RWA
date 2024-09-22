@@ -1,22 +1,21 @@
-import { createReducer, on } from "@ngrx/store";
-import { Question } from "../models/question";
-import {createEntityAdapter, EntityState} from "@ngrx/entity"
-import * as Actions from "./quiz.actions"
+import { inject, Injectable } from "@angular/core";
+import { QuizService } from "../services/quiz-service/quiz.service";
+import * as QuizAcions from "./quiz.actions"
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { catchError, map, mergeMap, of } from "rxjs";
 
-
-export interface QuestionState extends EntityState<Question> {
-    displayedQuestion : number;
+@Injectable() 
+export class QuizEffects {
+    constructor(private quizService: QuizService) {}
+    action$ = inject(Actions);
+    loadQuestions$ = createEffect(() => 
+    this.action$.pipe(
+        ofType(QuizAcions.loadQuestions),
+        mergeMap(() =>
+            this.quizService.getAll().pipe(
+                map((questions) => QuizAcions.loadQuestionsSuccess({questions: questions})),
+                catchError(() => of({type: 'loadError'}))
+            )
+        )
+    ));
 }
-
-const adapter = createEntityAdapter<Question>();
-
-export const initialState : QuestionState = adapter.getInitialState({
-    displayedQuestion: 0
-});
-
-export const questionsReducer = createReducer(
-    initialState,
-    on(Actions.loadQuestionsSuccess, (state,{questions}) => 
-        adapter.setAll(questions, state)
-    )
-)

@@ -8,16 +8,33 @@
       { "id": 2, "userId": 2, "gameType": "numbers", "score": 1200 }
     ],
     "questions": [
-    {
-      "id": 1,
-      "text": "What is the capital of France?",
-      "answers": [
-        { "text": "Berlin", "isCorrect": false },
-        { "text": "Madrid", "isCorrect": false },
-        { "text": "Paris", "isCorrect": true },
-        { "text": "London", "isCorrect": true}
+        {
+          "id": 1,
+          "text": "What is the capital of France?",
+          "answers": [
+            { "text": "Berlin", "isCorrect": false },
+            { "text": "Madrid", "isCorrect": false },
+            { "text": "Paris", "isCorrect": true }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "Which planet is known as the Red Planet?",
+          "answers": [
+            { "text": "Venus", "isCorrect": false },
+            { "text": "Mars", "isCorrect": true },
+            { "text": "Jupiter", "isCorrect": false }
+          ]
+        },
+        {
+          "id": 3,
+          "text": "Which element has the chemical symbol 'H'?",
+          "answers": [
+            { "text": "Helium", "isCorrect": false },
+            { "text": "Hydrogen", "isCorrect": true },
+            { "text": "Oxygen", "isCorrect": false }
+          ]
+        }
       ]
-    }
-  ]
-  }
+}
   

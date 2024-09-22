@@ -1,34 +1,29 @@
 .answer-item {
-    padding: 10px 15px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .answer-item:hover {
-    background-color: #e0e0e0;
-  }
-  
-  /* Correct answer styling */
-  .correct-answer {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
-  }
-  
-  /* Incorrect answer styling */
-  .selected-incorrect {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-  }
-  
-  /* Selected correct answer styling */
-  .selected-correct {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
-  }
+  padding: 10px 15px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.selected-correct {
+  background-color: #d4edda; /* Green */
+  border-color: #c3e6cb;
+  color: #155724;
+  outline: 3px solid #28a745; /* Add a green outline */
+}
+
+.selected-incorrect {
+  background-color: #f8d7da; /* Red */
+  border-color: #f5c6cb;
+  color: #721c24;
+  outline: 3px solid #dc3545; /* Add a red outline */
+}
+
+.correct-answer {
+  background-color: #d4edda; /* Green for correct answers */
+  border-color: #c3e6cb;
+  color: #155724;
+}

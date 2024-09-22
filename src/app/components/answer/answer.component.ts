@@ -8,6 +8,7 @@ import { Answer } from '../../models/question';
 })
 export class AnswerComponent {
   @Input() answer: Answer | null = null;
+  @Input() selectedAnswer: Answer | null = null; // Pass the selected answer from the parent
   @Output() answerClicked: EventEmitter<Answer> = new EventEmitter<Answer>();
 
   onClick() {
