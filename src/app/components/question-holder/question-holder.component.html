@@ -1,0 +1,17 @@
+<div class="question-holder">
+    <app-question [question]="question.text"></app-question>
+    
+    <div class="answers">
+      <app-answer
+        *ngFor="let answer of question.answers"
+        [answer]="answer"
+        (answerClicked)="onAnswerSelected(answer)"
+        [ngClass]="{
+          'selected-correct': answer.isCorrect && answer === selectedAnswer,
+          'selected-incorrect': !answer.isCorrect && answer === selectedAnswer,
+          'correct-answer': answer.isCorrect && answer !== selectedAnswer,
+        }"
+      ></app-answer>
+    </div>
+  </div>
+  

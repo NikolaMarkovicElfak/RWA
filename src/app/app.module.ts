@@ -11,6 +11,11 @@ import { GamesPageComponent } from './components/games-page/games-page.component
 import { KoznaznaPageComponent } from './components/koznazna-page/koznazna-page.component';
 import { AsocijacijePageComponent } from './components/asocijacije-page/asocijacije-page.component';
 import { HighscoreComponent } from './components/highscore/highscore.component';
+import { QuestionComponent } from './components/question/question.component';
+import { AnswerComponent } from './components/answer/answer.component';
+import { QuestionHolderComponent } from './components/question-holder/question-holder.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -21,12 +26,17 @@ import { HighscoreComponent } from './components/highscore/highscore.component';
     GamesPageComponent,
     KoznaznaPageComponent,
     AsocijacijePageComponent,
-    HighscoreComponent
+    HighscoreComponent,
+    QuestionComponent,
+    AnswerComponent,
+    QuestionHolderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

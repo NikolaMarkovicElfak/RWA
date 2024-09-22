@@ -6,6 +6,18 @@
     "highscores": [
       { "id": 1, "userId": 1, "gameType": "letters", "score": 1500 },
       { "id": 2, "userId": 2, "gameType": "numbers", "score": 1200 }
-    ]
+    ],
+    "questions": [
+    {
+      "id": 1,
+      "text": "What is the capital of France?",
+      "answers": [
+        { "text": "Berlin", "isCorrect": false },
+        { "text": "Madrid", "isCorrect": false },
+        { "text": "Paris", "isCorrect": true },
+        { "text": "London", "isCorrect": true}
+      ]
+    }
+  ]
   }
   
