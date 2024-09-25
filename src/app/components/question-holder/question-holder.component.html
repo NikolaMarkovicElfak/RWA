@@ -1,5 +1,8 @@
-<div *ngIf="currentQuestion">
-  <app-question [question]="currentQuestion.text"></app-question> <p>{{score}}</p>
+<div class="score-container">
+  <h3>Score: {{ score }}</h3>
+</div>
+<div *ngIf="currentQuestion; else resultTemplate">
+  <app-question [question]="currentQuestion.text"></app-question>
   <div class="answers">
     <app-answer
       *ngFor="let answer of currentQuestion.answers"
@@ -9,6 +12,9 @@
     ></app-answer>
   </div>
 </div>
-<div *ngIf="showResult">
-  <h2>Quiz Completed! Your score is {{score}}!</h2>
-</div>
+<ng-template #resultTemplate>
+  <div class="result-container">
+    <h2>Quiz Completed!</h2>
+    <h3>Your final score: {{ score }}</h3>
+  </div>
+</ng-template>

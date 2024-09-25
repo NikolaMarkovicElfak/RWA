@@ -1,0 +1,3 @@
+<div class="term" (click)="onReveal()" [ngClass]="{ 'revealed': term.isRevealed}" *ngIf = "term">
+    {{ term.isRevealed ? term.text : '?' }}
+  </div>

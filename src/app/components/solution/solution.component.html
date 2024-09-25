@@ -1,0 +1,12 @@
+<div class="solution">
+    <div class="terms"  *ngIf="column">
+      <app-term (termRevealed)="reveal(term)" *ngFor="let term of column.terms" [term]="term"></app-term>
+    </div>
+    <input type="text" placeholder="Rešenje kolone" id = {{column.id}}
+    *ngIf="column"
+    [disabled]="!(column.enableInput && enableInput)"
+    [(ngModel)]="userSolution"
+    [ngClass]="{ 'revealed-input': column.isRevealed, 'default-input': !column.isRevealed }"
+    (ngModelChange)="onSolutionInputChange($event)"
+    > 
+  </div>

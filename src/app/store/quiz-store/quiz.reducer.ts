@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { Question } from "../models/question";
+import { Question } from "../../models/question";
 import {createEntityAdapter, EntityState} from "@ngrx/entity"
 import * as Actions from "./quiz.actions"
 

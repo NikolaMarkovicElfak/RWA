@@ -1,4 +1,4 @@
-import { QuestionState } from "./store/quiz.reducer";
+import { QuestionState } from "./store/quiz-store/quiz.reducer";
 
 export interface AppState {
     quiz: QuestionState

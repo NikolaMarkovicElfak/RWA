@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Question } from "../models/question";
+import { Question } from "../../models/question";
 
 export const loadQuestions = createAction('[Quiz] Load Questions');
 export const loadQuestionsSuccess = createAction('[Quiz] Load Questions Success', props<{ questions: Question[] }>());

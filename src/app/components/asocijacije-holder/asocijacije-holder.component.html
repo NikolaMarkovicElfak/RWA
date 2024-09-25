@@ -1,0 +1,20 @@
+<div class="asocijacije-holder">
+    <!-- Solution components for columns A, B, C, and D -->
+    <div class="solutions" *ngIf="mockGame">
+      <app-solution 
+        *ngFor = "let column of columns$ | async"
+        [enableInput]="enableInput$ | async"
+        [column]="column"
+        [userSolution]="userInput"
+        (userSolutionChange)="onColumnInput(column.id, $event)">
+    </app-solution>
+    </div>
+    
+    <!-- Input for the final solution -->
+    <div class="final-solution">
+      <input type="text" placeholder="Konačno rešenje" 
+      [disabled]="!mockGame?.enableInput"/>
+      <button (click) = "submitSolution()">ENTER</button>
+    </div>
+  </div>
+  

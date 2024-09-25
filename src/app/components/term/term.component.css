@@ -1,0 +1,14 @@
+.term {
+    border: 1px solid black;
+    padding: 10px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    background-color: lightgray;
+  }
+  .term.revealed {
+    background-color: white;
+    font-weight: bold;
+    pointer-events: none;
+  }

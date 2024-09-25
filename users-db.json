@@ -35,6 +35,57 @@
             { "text": "Oxygen", "isCorrect": false }
           ]
         }
+      ],
+
+      "asocijacije" : [
+        {
+          "id": 1,
+          "cloumns":[
+            {
+              "id" : "A",
+              "terms": [
+                {
+                  "text": "term",
+                  "isRevealed": false
+                }
+              ],
+              "isRevealed": false,
+              "solution": "A"
+            },
+            {
+              "id" : "B",
+              "terms": [
+                {
+                  "text": "term",
+                  "isRevealed": false
+                }
+              ],
+              "isRevealed": false,
+              "solution": "B"
+            },
+            {
+              "id" : "C",
+              "terms": [
+                {
+                  "text": "term",
+                  "isRevealed": false
+                }
+              ],
+              "isRevealed": false,
+              "solution": "C"
+            },
+            {
+              "id" : "D",
+              "terms": [
+                {
+                  "text": "term",
+                  "isRevealed": false
+                }
+              ],
+              "isRevealed": false,
+              "solution": "D"
+            }
+          ]
+        }
       ]
 }
-  

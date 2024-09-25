@@ -1,5 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,8 +18,13 @@ import { QuestionHolderComponent } from './components/question-holder/question-h
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { QuizEffects } from './store/quiz.effects';
-import { questionsReducer } from './store/quiz.reducer';
+import { QuizEffects } from './store/quiz-store/quiz.effects';
+import { questionsReducer } from './store/quiz-store/quiz.reducer';
+import { TermComponent } from './components/term/term.component';
+import { SolutionComponent } from './components/solution/solution.component';
+import { AsocijacijeHolderComponent } from './components/asocijacije-holder/asocijacije-holder.component';
+import { asocijacijeReducer } from './store/asocijacije-store/asocijacije.reducer';
+//import { asocijacijeReducer } from './store/asocijacije-store/asocijacije.reducer';
 
 @NgModule({
   declarations: [
@@ -32,13 +38,17 @@ import { questionsReducer } from './store/quiz.reducer';
     HighscoreComponent,
     QuestionComponent,
     AnswerComponent,
-    QuestionHolderComponent
+    QuestionHolderComponent,
+    TermComponent,
+    SolutionComponent,
+    AsocijacijeHolderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({question: questionsReducer}, {}),
+    FormsModule,
+    StoreModule.forRoot({question: questionsReducer, asocijacije: asocijacijeReducer}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
