@@ -33,7 +33,7 @@ export const selectIsFinalRevealed = createSelector(
 );
 
 export const selectUserInput = createSelector(
-    (state: AsocijacijeState) => state,
+    selectAsocijacijaState,
     (state) => state.userInput
   );
 

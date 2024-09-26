@@ -22,6 +22,7 @@ export class AsocijacijePageComponent {
         isRevealed: false,
         enableInput: false,
         revealAllTerms: false,
+        userInput: ''
       },
       {
         id: 'B',
@@ -35,6 +36,7 @@ export class AsocijacijePageComponent {
         isRevealed: false,
         enableInput: false,
         revealAllTerms: false,
+        userInput: ''
       },
       {
         id: 'C',
@@ -48,6 +50,7 @@ export class AsocijacijePageComponent {
         isRevealed: false,
         enableInput: false,
         revealAllTerms: false,
+        userInput: ''
       },
       {
         id: 'D',
@@ -61,6 +64,7 @@ export class AsocijacijePageComponent {
         isRevealed: false,
         enableInput: false,
         revealAllTerms: false,
+        userInput: ''
       }
     ],
     finalSolution: 'Final Solution',

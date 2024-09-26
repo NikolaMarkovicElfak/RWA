@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { AsocijacijaColumn, AsocijacijaGame } from '../../models/asocijacije';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
-import { selectColumns, selectEnableInput } from '../../store/asocijacije-store/asocijacije.selector';
+import { selectAsocijacijaGame, selectColumns, selectEnableInput } from '../../store/asocijacije-store/asocijacije.selector';
 import { map, Observable, of } from 'rxjs';
 import { checkUserInput, updateUserInput } from '../../store/asocijacije-store/asocijacije.actions';
 
@@ -16,23 +16,21 @@ export class AsocijacijeHolderComponent implements OnInit{
 
   enableInput$: Observable<boolean> = of(false);
   columns$: Observable<AsocijacijaColumn[]> = of([]);
-  userInput : string = '';
-  selectedColumnId: string | null = null;
+  userFinalInput : string = '';
+  asocijacija$ : Observable<AsocijacijaGame> = of();
+  enableFinalInput: boolean = false;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.columns$ = this.store.select(selectColumns);
     this.enableInput$ = this.store.select(selectEnableInput);
+    this.asocijacija$ = this.store.select(selectAsocijacijaGame);
   }
 
-  onColumnInput(columnId: string, inputValue: string) {
-    this.selectedColumnId = columnId;
-    this.userInput = inputValue;
-    this.store.dispatch(updateUserInput({ columnId, userInput: inputValue }));
-  }
-
-  submitSolution() {
+  async submitSolution() {
     this.store.dispatch(checkUserInput());
+    console.log(this.userFinalInput);
+    this.asocijacija$.subscribe((asocijacija) => this.enableFinalInput = asocijacija.enableInput)
   }
 }

@@ -31,6 +31,7 @@ export const initialState: AsocijacijeState = {
             isRevealed: false,
             enableInput: false,
             revealAllTerms: false,
+            userInput: ''
           },
           {
             id: 'B',
@@ -44,6 +45,7 @@ export const initialState: AsocijacijeState = {
             isRevealed: false,
             enableInput: false,
             revealAllTerms: false,
+            userInput: ''
           },
           {
             id: 'C',
@@ -57,6 +59,7 @@ export const initialState: AsocijacijeState = {
             isRevealed: false,
             enableInput: false,
             revealAllTerms: false,
+            userInput: ''
           },
           {
             id: 'D',
@@ -70,6 +73,7 @@ export const initialState: AsocijacijeState = {
             isRevealed: false,
             enableInput: false,
             revealAllTerms: false,
+            userInput: ''
           }
         ],
         finalSolution: 'Final Solution',
@@ -120,7 +124,6 @@ export const asocijacijeReducer = createReducer(
         if (columnId) {
           const updatedColumns = state.asocijacija.columns.map((column) => {
             if (column.id === columnId && column.solution.toLowerCase() === input.toLowerCase()) {
-                const isMatching = true;
                 const revealedTerms = column.terms.map(term => ({
                     ...term,
                     isRevealed: true
@@ -134,16 +137,19 @@ export const asocijacijeReducer = createReducer(
             }
             return column;
           });
+          const isMatching = updatedColumns.some(column => column.id === columnId && column.isRevealed)
           return {
             ...state,
             asocijacija: {
               ...state.asocijacija,
-              columns: updatedColumns
+              columns: updatedColumns,
+              enableInput: isMatching
             },
             userInput: {
               columnId: null,
-              input: ''
-            }
+              input: '',
+            },
+            enableInput: isMatching,
           };
         }
         return state;

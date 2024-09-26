@@ -8,6 +8,7 @@ export interface AsocijacijaTerm {
     terms: AsocijacijaTerm[]; // List of terms
     solution: string; // Solution for this column
     isRevealed: boolean; // Indicates if the column solution is revealed
+    userInput: string;
     revealAllTerms: boolean;
     enableInput: boolean;
   }

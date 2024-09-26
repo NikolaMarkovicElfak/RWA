@@ -4,16 +4,15 @@
       <app-solution 
         *ngFor = "let column of columns$ | async"
         [enableInput]="enableInput$ | async"
-        [column]="column"
-        [userSolution]="userInput"
-        (userSolutionChange)="onColumnInput(column.id, $event)">
+        [column]="column">
     </app-solution>
     </div>
     
     <!-- Input for the final solution -->
     <div class="final-solution">
       <input type="text" placeholder="Konačno rešenje" 
-      [disabled]="!mockGame?.enableInput"/>
+      [disabled]="!enableFinalInput"
+      [(ngModel)]="userFinalInput"/>
       <button (click) = "submitSolution()">ENTER</button>
     </div>
   </div>
