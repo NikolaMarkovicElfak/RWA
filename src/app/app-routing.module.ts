@@ -6,14 +6,19 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { KoznaznaPageComponent } from './components/koznazna-page/koznazna-page.component';
 import { AsocijacijePageComponent } from './components/asocijacije-page/asocijacije-page.component';
 import { HighscorePageComponent } from './components/highscore-page/highscore-page.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './components/guards/auth.guard';
+import { HighscoreListComponent } from './components/highscore-list/highscore-list.component';
 
 const routes: Routes = [
-  { path:'games', component: GamesPageComponent, pathMatch: 'full'},
-  { path:'login', component: LoginPageComponent},
-  { path:'register', component: RegisterPageComponent},
-  { path:'games/koznazna', component: KoznaznaPageComponent},
-  { path:'games/asocijacije', component: AsocijacijePageComponent},
-  { path:'highscore', component: HighscorePageComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: GamesPageComponent, canActivate: [AuthGuard] },
+  { path:'games/koznazna', component: KoznaznaPageComponent, canActivate: [AuthGuard]},
+  { path:'games/asocijacije', component: AsocijacijePageComponent,canActivate: [AuthGuard]},
+  { path:'highscore', component: HighscoreListComponent,canActivate: [AuthGuard]},
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

@@ -1,0 +1,11 @@
+.highscore-list-card {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: #e3f2fd;
+  }
+  
+  .highscore-items {
+    display: flex;
+    flex-direction: column;
+  }

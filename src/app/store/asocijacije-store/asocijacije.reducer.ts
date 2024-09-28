@@ -16,69 +16,7 @@ export interface AsocijacijeState{
 }
 
 export const initialState: AsocijacijeState = {
-    asocijacija: {
-        id: 1,
-        columns: [
-          {
-            id: 'A',
-            terms: [
-              { text: 'Term A1', isRevealed: false },
-              { text: 'Term A2', isRevealed: false },
-              { text: 'Term A3', isRevealed: false },
-              { text: 'Term A4', isRevealed: false }
-            ],
-            solution: 'Solution A',
-            isRevealed: false,
-            enableInput: false,
-            revealAllTerms: false,
-            userInput: ''
-          },
-          {
-            id: 'B',
-            terms: [
-              { text: 'Term B1', isRevealed: false },
-              { text: 'Term B2', isRevealed: false },
-              { text: 'Term B3', isRevealed: false },
-              { text: 'Term B4', isRevealed: false }
-            ],
-            solution: 'Solution B',
-            isRevealed: false,
-            enableInput: false,
-            revealAllTerms: false,
-            userInput: ''
-          },
-          {
-            id: 'C',
-            terms: [
-              { text: 'Term C1', isRevealed: false },
-              { text: 'Term C2', isRevealed: false },
-              { text: 'Term C3', isRevealed: false },
-              { text: 'Term C4', isRevealed: false }
-            ],
-            solution: 'Solution C',
-            isRevealed: false,
-            enableInput: false,
-            revealAllTerms: false,
-            userInput: ''
-          },
-          {
-            id: 'D',
-            terms: [
-              { text: 'Term D1', isRevealed: false },
-              { text: 'Term D2', isRevealed: false },
-              { text: 'Term D3', isRevealed: false },
-              { text: 'Term D4', isRevealed: false }
-            ],
-            solution: 'Solution D',
-            isRevealed: false,
-            enableInput: false,
-            revealAllTerms: false,
-            userInput: ''
-          }
-        ],
-        finalSolution: 'Final Solution',
-        enableInput: false
-      },
+    asocijacija: {} as AsocijacijaGame,
       enableInput: false,
       enableReveal: false,
       revealAll: false,
@@ -90,6 +28,15 @@ export const initialState: AsocijacijeState = {
 
 export const asocijacijeReducer = createReducer(
     initialState,
+    on(AsocijacijeActions.loadAsocijacijuSuccess, (state, { asocijacija }) => ({
+        ...state,
+        asocijacija,
+      })),
+    
+    on(AsocijacijeActions.loadAsocijacijuFailure, (state, { error }) => ({
+    ...state,
+    })),
+
     on(AsocijacijeActions.revealTerm, (state, { columnId, termIndex }) => {
         const updatedColumns = state.asocijacija.columns.map((column) => {
           if (column.id === columnId) {
@@ -122,6 +69,30 @@ export const asocijacijeReducer = createReducer(
       on(AsocijacijeActions.checkUserInput, (state) => {
         const { columnId, input } = state.userInput;
         if (columnId) {
+            if(columnId == 'asocijacija'){
+                const isCorrect = state.asocijacija.finalSolution.toLowerCase() == input.toLowerCase();
+                const updatedColumns = state.asocijacija.columns.map((column) => {
+                    const revealedTerms = column.terms.map(term => ({
+                            ...term,
+                            isRevealed: true
+                          }));
+                      return {
+                        ...column,
+                        isRevealed: true,
+                        enableInput: false,
+                        terms: revealedTerms
+                    }
+                  });
+                return {
+                    ...state,
+                    asocijacija:{
+                        ...state.asocijacija,
+                        columns: isCorrect? updatedColumns : state.asocijacija.columns,
+                        isRevealed: isCorrect
+                    },
+                    revealAll : isCorrect
+                }
+            }
           const updatedColumns = state.asocijacija.columns.map((column) => {
             if (column.id === columnId && column.solution.toLowerCase() === input.toLowerCase()) {
                 const revealedTerms = column.terms.map(term => ({
@@ -138,18 +109,19 @@ export const asocijacijeReducer = createReducer(
             return column;
           });
           const isMatching = updatedColumns.some(column => column.id === columnId && column.isRevealed)
+          const isFinalMatching = state.asocijacija.enableInput || isMatching
           return {
             ...state,
             asocijacija: {
               ...state.asocijacija,
               columns: updatedColumns,
-              enableInput: isMatching
+              enableInput: isFinalMatching
             },
             userInput: {
               columnId: null,
               input: '',
             },
-            enableInput: isMatching,
+            enableInput: isMatching
           };
         }
         return state;

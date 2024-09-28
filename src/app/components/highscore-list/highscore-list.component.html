@@ -1,0 +1,9 @@
+<mat-card class="highscore-list-card">
+    <mat-card-title>High Scores</mat-card-title>
+    <div class="highscore-items">
+      <app-highscore-item
+        *ngFor="let item of highscoreItems"
+        [item]="item">
+      </app-highscore-item>
+    </div>
+  </mat-card>

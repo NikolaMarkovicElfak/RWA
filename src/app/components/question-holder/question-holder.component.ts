@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Answer, Question } from '../../models/question';
 import { QuizService } from '../../services/quiz-service/quiz.service';
+import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
+import { loadQuestions } from '../../store/quiz-store/quiz.actions';
+import { selectQuestions } from '../../store/quiz-store/quiz.selector';
 
 @Component({
   selector: 'app-question-holder',
@@ -9,6 +14,7 @@ import { QuizService } from '../../services/quiz-service/quiz.service';
 })
 export class QuestionHolderComponent implements OnInit {
   questions: Question[] = [];
+  questions$: Observable<Question[]> = of([]);
   currentQuestionIndex: number = 0;
   selectedAnswer: Answer | null = null; // Track the selected answer
   currentQuestion: Question | null = null;
@@ -16,14 +22,16 @@ export class QuestionHolderComponent implements OnInit {
   score: number = 0;
   toggle: boolean = true;
 
-  constructor(private quizService: QuizService) {}
+  constructor(private store : Store<AppState>) {}
 
   ngOnInit(): void {
-    this.loadQuestions();
+    this.store.dispatch(loadQuestions())
+    this.questions$ = this.store.select(selectQuestions);
+    this.loadQuestions2();
   }
 
-  loadQuestions(): void {
-    this.quizService.getAll().subscribe((questions) => {
+  loadQuestions2(): void {
+    this.questions$.subscribe((questions) => {
       this.questions = questions;
       this.selectRandomQuestion();
     });

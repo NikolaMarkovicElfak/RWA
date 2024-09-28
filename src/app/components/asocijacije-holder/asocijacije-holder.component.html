@@ -1,19 +1,37 @@
-<div class="asocijacije-holder">
-    <!-- Solution components for columns A, B, C, and D -->
-    <div class="solutions" *ngIf="mockGame">
+<div class="asocijacije-holder" mat-card>
+    <div class="solutions">
       <app-solution 
-        *ngFor = "let column of columns$ | async"
+        *ngFor="let column of (asocijacija$ | async)?.columns"
         [enableInput]="enableInput$ | async"
         [column]="column">
-    </app-solution>
+      </app-solution>
     </div>
-    
-    <!-- Input for the final solution -->
-    <div class="final-solution">
-      <input type="text" placeholder="Konačno rešenje" 
-      [disabled]="!enableFinalInput"
-      [(ngModel)]="userFinalInput"/>
-      <button (click) = "submitSolution()">ENTER</button>
+  
+    <div class="final-solution-container">
+      <!-- Input for final solution when not revealed -->
+      <mat-form-field *ngIf="!(asocijacija$ | async)?.isRevealed" appearance="fill">
+        <mat-label>Konačno rešenje</mat-label>
+        <input 
+          matInput 
+          [(ngModel)]="userFinalInput" 
+          (ngModelChange)="onInputChange($event)"
+          [disabled]="!(enableFinalInput && (enableInput$ | async))"
+          class="final-input"
+        />
+      </mat-form-field>
+  
+      <!-- Display final solution when revealed -->
+      <mat-form-field *ngIf="(asocijacija$ | async)?.isRevealed" appearance="fill">
+        <mat-label>Konačno rešenje</mat-label>
+        <input 
+          matInput 
+          [disabled]="true"
+          [value]="(asocijacija$ | async)?.finalSolution"
+          class="revealed-input"
+        />
+      </mat-form-field>
     </div>
+  
+    <button mat-raised-button color="primary" (click)="submitSolution()">ENTER</button>
   </div>
   

@@ -1,91 +1,158 @@
 {
-    "users": [
-      { "id": 1, "email": "user1@example.com", "password": "password1" },
-      { "id": 2, "email": "user2@example.com", "password": "password2" }
-    ],
-    "highscores": [
-      { "id": 1, "userId": 1, "gameType": "letters", "score": 1500 },
-      { "id": 2, "userId": 2, "gameType": "numbers", "score": 1200 }
-    ],
-    "questions": [
+  "users": [
+    {
+      "id": 1,
+      "email": "user1@example.com",
+      "password": "password1"
+    },
+    {
+      "id": 2,
+      "email": "user2@example.com",
+      "password": "password2"
+    },
+    {
+      "id": "432f",
+      "email": "luka",
+      "password": "1234"
+    },
+    {
+      "id": "e320",
+      "email": "luka",
+      "password": "luka"
+    }
+  ],
+  "highscores": [
+    {
+      "id": 1,
+      "userId": 1,
+      "gameType": "letters",
+      "score": 1500
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "gameType": "numbers",
+      "score": 1200
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "text": "What is the capital of France?",
+      "answers": [
         {
-          "id": 1,
-          "text": "What is the capital of France?",
-          "answers": [
-            { "text": "Berlin", "isCorrect": false },
-            { "text": "Madrid", "isCorrect": false },
-            { "text": "Paris", "isCorrect": true }
-          ]
+          "text": "Berlin",
+          "isCorrect": false
         },
         {
-          "id": 2,
-          "text": "Which planet is known as the Red Planet?",
-          "answers": [
-            { "text": "Venus", "isCorrect": false },
-            { "text": "Mars", "isCorrect": true },
-            { "text": "Jupiter", "isCorrect": false }
-          ]
+          "text": "Madrid",
+          "isCorrect": false
         },
         {
-          "id": 3,
-          "text": "Which element has the chemical symbol 'H'?",
-          "answers": [
-            { "text": "Helium", "isCorrect": false },
-            { "text": "Hydrogen", "isCorrect": true },
-            { "text": "Oxygen", "isCorrect": false }
-          ]
-        }
-      ],
-
-      "asocijacije" : [
-        {
-          "id": 1,
-          "cloumns":[
-            {
-              "id" : "A",
-              "terms": [
-                {
-                  "text": "term",
-                  "isRevealed": false
-                }
-              ],
-              "isRevealed": false,
-              "solution": "A"
-            },
-            {
-              "id" : "B",
-              "terms": [
-                {
-                  "text": "term",
-                  "isRevealed": false
-                }
-              ],
-              "isRevealed": false,
-              "solution": "B"
-            },
-            {
-              "id" : "C",
-              "terms": [
-                {
-                  "text": "term",
-                  "isRevealed": false
-                }
-              ],
-              "isRevealed": false,
-              "solution": "C"
-            },
-            {
-              "id" : "D",
-              "terms": [
-                {
-                  "text": "term",
-                  "isRevealed": false
-                }
-              ],
-              "isRevealed": false,
-              "solution": "D"
-            }
-          ]
+          "text": "Paris",
+          "isCorrect": true
         }
       ]
+    },
+    {
+      "id": 2,
+      "text": "Which planet is known as the Red Planet?",
+      "answers": [
+        {
+          "text": "Venus",
+          "isCorrect": false
+        },
+        {
+          "text": "Mars",
+          "isCorrect": true
+        },
+        {
+          "text": "Jupiter",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Which element has the chemical symbol 'H'?",
+      "answers": [
+        {
+          "text": "Helium",
+          "isCorrect": false
+        },
+        {
+          "text": "Hydrogen",
+          "isCorrect": true
+        },
+        {
+          "text": "Oxygen",
+          "isCorrect": false
+        }
+      ]
+    }
+  ],
+  "asocijacije": {
+    "id": 1,
+    "columns": [
+      {
+        "id": "A",
+        "terms": [
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false }
+        ],
+        "solution": "Solution A",
+        "isRevealed": false,
+        "enableInput": false,
+        "revealAllTerms": false,
+        "userInput": ""
+      },
+      {
+      "id": "B",
+        "terms": [
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false }
+        ],
+        "solution": "Solution A",
+        "isRevealed": false,
+        "enableInput": false,
+        "revealAllTerms": false,
+        "userInput": ""
+      },
+      {
+      "id": "C",
+        "terms": [
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false }
+        ],
+        "solution": "Solution A",
+        "isRevealed": false,
+        "enableInput": false,
+        "revealAllTerms": false,
+        "userInput": ""
+      },
+      {
+      "id": "D",
+        "terms": [
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false },
+          { "text": "Term A1", "isRevealed": false }
+        ],
+        "solution": "Solution A",
+        "isRevealed": false,
+        "enableInput": false,
+        "revealAllTerms": false,
+        "userInput": ""
+      }
+    ],
+    "finalSolution": "Final Solution",
+    "enableInput": false,
+    "isRevealed": false
+  }
 }

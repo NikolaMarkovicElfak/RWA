@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './app.state';
+import { registerSuccess } from './store/auth-store/auth.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'slagalica';
+export class AppComponent implements OnInit {
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit() {
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      this.store.dispatch(registerSuccess({ user: JSON.parse(user) }));
+    }
+  }
 }

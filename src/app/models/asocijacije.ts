@@ -18,4 +18,5 @@ export interface AsocijacijaTerm {
     columns: AsocijacijaColumn[]; // List of columns (A, B, C, D)
     finalSolution: string; // Final solution for the whole game
     enableInput: boolean;
+    isRevealed: boolean;
   }

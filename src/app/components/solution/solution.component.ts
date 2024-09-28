@@ -3,7 +3,7 @@ import { AsocijacijaColumn, AsocijacijaTerm } from '../../models/asocijacije';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import { revealTerm, updateUserInput } from '../../store/asocijacije-store/asocijacije.actions';
-import { map, Observable, of, Subscription } from 'rxjs';
+import { filter, map, Observable, of, Subscription } from 'rxjs';
 import { selectUserInput } from '../../store/asocijacije-store/asocijacije.selector';
 
 @Component({
@@ -21,18 +21,15 @@ export class SolutionComponent implements OnInit, OnDestroy{
   constructor(private store : Store<AppState>) { }
 
   ngOnInit() {
-    // Pretplata na promene userInput iz store-a
-    this.subscription = this.store.select(selectUserInput).subscribe(userInput => {
-      if (userInput.columnId === this.column?.id || userInput.columnId === null) {
-        this.userSolution = userInput.input;
-
-        // Proverite da li se userSolution menja
-        console.log('Ažurirana vrednost userSolution:', this.userSolution);
-      }
-    });
-    if(this.column)
-    this.userSolution = this.column.userInput
-  }
+  this.store.select(selectUserInput)
+  .pipe(
+    filter(userInput => !!userInput.columnId || userInput.columnId === null),
+    map(userInput => userInput.columnId === this.column?.id ? userInput.input : ''),
+  )
+  .subscribe(userInputValue => {
+    this.userSolution = userInputValue;
+  });
+}
 
   reveal(term: AsocijacijaTerm) {
     if(this.column){
@@ -56,7 +53,6 @@ export class SolutionComponent implements OnInit, OnDestroy{
 
   onInputChange(event: Event) {
     const value = (event.target as HTMLInputElement).value;
-    this.userSolution = value;
     if(this.column)
     this.store.dispatch(updateUserInput({ columnId: this.column.id, userInput: value }));
   }

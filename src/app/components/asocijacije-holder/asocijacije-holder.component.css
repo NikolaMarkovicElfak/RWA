@@ -12,15 +12,20 @@
     gap: 20px;
   }
   
-  .final-solution {
-    margin-top: 20px;
+  .final-solution-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
-  .final-solution input {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-    border: 2px solid #000;
-    border-radius: 4px;
-    text-align: center;
+  .final-input {
+    width: 400px; /* Width can remain as is */
   }
+  
+  .revealed-input {
+    background-color: lightgray;
+    color: green;
+    font-weight: bold;
+    border: 2px solid green;
+  }
+  

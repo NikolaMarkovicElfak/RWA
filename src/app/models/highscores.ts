@@ -1,6 +1,6 @@
 export interface Highscore {
     id: number;
-    userId: number;
+    username: string;
     gameType: string;
     score: number;
   }
