@@ -13,7 +13,7 @@ export class QuizEffects {
         ofType(QuizAcions.loadQuestions),
         mergeMap(() =>
             this.quizService.getAll().pipe(
-                map((questions) => QuizAcions.loadQuestionsSuccess({questions: questions})),
+                map((questions) => QuizAcions.loadQuestionsSuccess({questions})),
                 catchError(() => of({type: 'loadError'}))
             )
         )

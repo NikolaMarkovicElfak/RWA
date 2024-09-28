@@ -1,13 +1,13 @@
 <div class="score-container">
-  <h3>Score: {{ score }}</h3>
+  <h3>Score: {{ score$ | async}}</h3>
 </div>
-<div *ngIf="currentQuestion; else resultTemplate">
-  <app-question [question]="currentQuestion.text"></app-question>
+<div *ngIf="currentQuestion$; else resultTemplate">
+  <app-question [question]="(currentQuestion$|async)?.text"></app-question>
   <div class="answers">
     <app-answer
-      *ngFor="let answer of currentQuestion.answers"
+      *ngFor="let answer of (currentQuestion$|async)?.answers"
       [answer]="answer"
-      [selectedAnswer]="selectedAnswer"
+      [selectedAnswer]="selectedAnswer$|async"
       (answerClicked)="onAnswerSelected(answer)"
     ></app-answer>
   </div>
@@ -15,6 +15,6 @@
 <ng-template #resultTemplate>
   <div class="result-container">
     <h2>Quiz Completed!</h2>
-    <h3>Your final score: {{ score }}</h3>
+    <h3>Your final score: {{ score$|async }}</h3>
   </div>
 </ng-template>

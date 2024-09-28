@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class QuestionComponent {
 
-  @Input() question: string = '';
+  @Input() question: string | undefined = '';
 
   constructor() {}
 

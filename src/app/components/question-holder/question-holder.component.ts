@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Answer, Question } from '../../models/question';
-import { QuizService } from '../../services/quiz-service/quiz.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.state';
-import { loadQuestions } from '../../store/quiz-store/quiz.actions';
-import { selectQuestions } from '../../store/quiz-store/quiz.selector';
+import { loadQuestions, nextQuestion, selectAnswer } from '../../store/quiz-store/quiz.actions';
+import { selectCurrentQuestion, selectScore, selectSelectedAnswer, selectShowResult, selectToggle } from '../../store/quiz-store/quiz.selector';
 
 @Component({
   selector: 'app-question-holder',
@@ -13,54 +11,35 @@ import { selectQuestions } from '../../store/quiz-store/quiz.selector';
   styleUrl: './question-holder.component.css'
 })
 export class QuestionHolderComponent implements OnInit {
-  questions: Question[] = [];
-  questions$: Observable<Question[]> = of([]);
-  currentQuestionIndex: number = 0;
-  selectedAnswer: Answer | null = null; // Track the selected answer
-  currentQuestion: Question | null = null;
-  showResult: boolean = false;
-  score: number = 0;
-  toggle: boolean = true;
+  currentQuestion$: Observable<Question | null | undefined> = of();
+  score$: Observable<number> = of();
+  showResult$: Observable<boolean | null> = of();
+  selectedAnswer$ : Observable<Answer | null> = of();
+  toggle$ : Observable<Boolean> = of();
 
-  constructor(private store : Store<AppState>) {}
+  constructor(private store: Store) {
+  }
 
   ngOnInit(): void {
-    this.store.dispatch(loadQuestions())
-    this.questions$ = this.store.select(selectQuestions);
-    this.loadQuestions2();
-  }
-
-  loadQuestions2(): void {
-    this.questions$.subscribe((questions) => {
-      this.questions = questions;
-      this.selectRandomQuestion();
-    });
-  }
-
-  selectRandomQuestion(): void {
-    if (this.questions.length > 0) {
-      this.currentQuestionIndex = Math.floor(Math.random() * this.questions.length);
-      this.currentQuestion = this.questions[this.currentQuestionIndex];
-      this.selectedAnswer = null;
-      this.toggle = true;
-    }
+    this.store.dispatch(loadQuestions());
+    this.currentQuestion$ = this.store.select(selectCurrentQuestion);
+    this.score$ = this.store.select(selectScore);
+    this.showResult$ = this.store.select(selectShowResult);
+    this.selectedAnswer$ = this.store.select(selectSelectedAnswer);
+    this.toggle$ = this.store.select(selectToggle); 
+    this.score$.subscribe(score => console.log('Score:', score));
   }
 
   onAnswerSelected(answer: Answer): void {
-    if(!this.toggle) return;
-    this.selectedAnswer = answer; // Track the selected answer
-    console.log(answer.isCorrect ? 'Correct answer selected!' : 'Incorrect answer selected.');
-    this.score += (this.selectedAnswer.isCorrect)? 10: -5;
-    // Move to the next question after a 1.5-second delay
-    setTimeout(() => {
-      this.questions.splice(this.currentQuestionIndex, 1);
-      if (this.questions.length > 0) {
-        this.selectRandomQuestion();
-      } else {
-        this.currentQuestion = null;
-        this.showResult = true;
+    this.toggle$.pipe(take(1)).subscribe(toggle => { // Koristimo take(1) da ograničimo na jednu pretplatu
+      if (toggle) {
+        this.store.dispatch(selectAnswer({ answer }));
+
+        // Pomeramo na sledeće pitanje sa vremenskim kašnjenjem
+        setTimeout(() => {
+          this.store.dispatch(nextQuestion());
+        }, 1500);
       }
-    }, 1500); // 1.5 seconds delay
-    this.toggle = false;
+    });
   }
 }

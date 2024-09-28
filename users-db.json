@@ -38,54 +38,110 @@
   "questions": [
     {
       "id": 1,
-      "text": "What is the capital of France?",
+      "text": "What is the name of the 1994 film directed by Quentin Tarantino that intertwines the stories of two mob hitmen, a boxer, a gangster's wife, and a pair of bandits?",
       "answers": [
         {
-          "text": "Berlin",
+          "text": "Reservoir Dogs",
           "isCorrect": false
         },
         {
-          "text": "Madrid",
-          "isCorrect": false
-        },
-        {
-          "text": "Paris",
+          "text": "Pulp Fiction",
           "isCorrect": true
+        },
+        {
+          "text": "Jackie Brown",
+          "isCorrect": false
+        },
+        {
+          "text": "Kill Bill",
+          "isCorrect": false
         }
       ]
     },
     {
       "id": 2,
-      "text": "Which planet is known as the Red Planet?",
+      "text": "In the 1993 movie 'Jurassic Park,' what type of dinosaur was the first to be cloned and shown to the audience?",
       "answers": [
         {
-          "text": "Venus",
+          "text": "Tyrannosaurus Rex",
           "isCorrect": false
         },
         {
-          "text": "Mars",
+          "text": "Velociraptor",
           "isCorrect": true
         },
         {
-          "text": "Jupiter",
+          "text": "Triceratops",
+          "isCorrect": false
+        },
+        {
+          "text": "Brachiosaurus",
           "isCorrect": false
         }
       ]
     },
     {
       "id": 3,
-      "text": "Which element has the chemical symbol 'H'?",
+      "text": "What is the title of the 1995 crime thriller directed by Bryan Singer, which follows the investigation of a mysterious murder that leads to an intricate web of deceit and corruption?",
       "answers": [
         {
-          "text": "Helium",
+          "text": "Reservoir Dogs",
           "isCorrect": false
         },
         {
-          "text": "Hydrogen",
+          "text": "The Usual Suspects",
           "isCorrect": true
         },
         {
-          "text": "Oxygen",
+          "text": "Se7en",
+          "isCorrect": false
+        },
+        {
+          "text": "Heat",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "text": "What is the title of the 1999 science fiction film directed by Lana and Lilly Wachowski that explores the concept of simulated reality?",
+      "answers": [
+        {
+          "text": "Inception",
+          "isCorrect": false
+        },
+        {
+          "text": "The Truman Show",
+          "isCorrect": false
+        },
+        {
+          "text": "The Matrix",
+          "isCorrect": true
+        },
+        {
+          "text": "Dark City",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "text": "In the 1996 film 'Fargo,' directed by Joel and Ethan Coen, what is the name of the pregnant police chief who investigates a series of homicides in Minnesota?",
+      "answers": [
+        {
+          "text": "Marge Gunderson",
+          "isCorrect": true
+        },
+        {
+          "text": "Clarice Starling",
+          "isCorrect": false
+        },
+        {
+          "text": "Jane Craig",
+          "isCorrect": false
+        },
+        {
+          "text": "Ellen Ripley",
           "isCorrect": false
         }
       ]
