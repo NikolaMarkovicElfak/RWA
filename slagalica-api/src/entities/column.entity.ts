@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
 import { Term } from "./term.entity";
+import { Association } from "./association.entity";
 
 @Entity()
 export class AsColumn {
@@ -23,4 +24,7 @@ export class AsColumn {
 
     @Column()
     enableInput: boolean;
+
+    @ManyToOne(() => Association, (association) => association.columns)
+    association: Association;
 }
