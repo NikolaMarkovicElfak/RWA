@@ -8,3 +8,4 @@ export const loadQuestionsFailure = createAction('[Quiz] Load Questions Failure'
 export const selectAnswer = createAction('[Quiz] Select Answer', props<{ answer: Answer }>());
 export const nextQuestion = createAction('[Quiz] Next Question');
 export const completeQuiz = createAction('[Quiz] Complete Quiz');
+export const skipQuestion = createAction('[Quiz] Skip Question')

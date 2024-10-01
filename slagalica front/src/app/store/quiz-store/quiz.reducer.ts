@@ -57,6 +57,24 @@ export const questionsReducer = createReducer(
           showResult: remainingQuestionIds.length === 0,
         };
       }),
+
+      on(QuizActions.skipQuestion, (state) => {
+        if(!state.currentQuestionId)
+          return state;
+
+        const currentQuestion = state.entities[state.currentQuestionId];
+        if (currentQuestion) {
+          const correctAnswer = currentQuestion.answers.find(answer => answer.isCorrect) || null;
+          return {
+            ...state,
+            selectedAnswer: correctAnswer,
+            showResult: true,
+            toggle: false,
+          };
+        }
+    
+        return state;
+      }),
     
       // Akcija za završetak kviza
       on(QuizActions.completeQuiz, (state) => ({

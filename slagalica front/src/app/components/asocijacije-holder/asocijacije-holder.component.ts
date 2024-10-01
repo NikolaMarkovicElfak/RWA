@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { AsocijacijaColumn, AsocijacijaGame } from '../../models/asocijacije';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
-import { selectAsocijacijaGame, selectColumns, selectEnableInput, selectUserInput } from '../../store/asocijacije-store/asocijacije.selector';
+import { selectAsocijacijaGame, selectColumns, selectEnableInput, selectScore, selectUserInput } from '../../store/asocijacije-store/asocijacije.selector';
 import { filter, map, Observable, of } from 'rxjs';
 import { checkUserInput, loadAsocijaciju, updateUserInput } from '../../store/asocijacije-store/asocijacije.actions';
 
@@ -18,6 +18,7 @@ export class AsocijacijeHolderComponent implements OnInit{
   userFinalInput : string = '';
   asocijacija$ : Observable<AsocijacijaGame> = of();
   enableFinalInput: boolean = false;
+  score$: Observable<number> = of();
 
   constructor(private store: Store<AppState>) { }
 
@@ -25,6 +26,7 @@ export class AsocijacijeHolderComponent implements OnInit{
     this.store.dispatch(loadAsocijaciju());
     this.enableInput$ = this.store.select(selectEnableInput);
     this.asocijacija$ = this.store.select(selectAsocijacijaGame);
+    this.score$ = this.store.select(selectScore);
     this.store.select(selectUserInput)
     .pipe(
       filter(userInput => !!userInput.columnId || userInput.columnId === null),

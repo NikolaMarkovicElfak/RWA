@@ -24,7 +24,7 @@ export class SolutionComponent implements OnInit, OnDestroy{
   this.store.select(selectUserInput)
   .pipe(
     filter(userInput => !!userInput.columnId || userInput.columnId === null),
-    map(userInput => userInput.columnId === this.column?.id ? userInput.input : ''),
+    map(userInput => userInput.columnId === this.column?.columnId ? userInput.input : ''),
   )
   .subscribe(userInputValue => {
     this.userSolution = userInputValue;
@@ -34,14 +34,14 @@ export class SolutionComponent implements OnInit, OnDestroy{
   reveal(term: AsocijacijaTerm) {
     if(this.column){
       const id = this.column.terms.findIndex((oldTerm) => term === oldTerm);
-      this.store.dispatch(revealTerm({columnId: this.column.id, termIndex: id}))
+      this.store.dispatch(revealTerm({columnId: this.column.columnId, termIndex: id}))
     }   
   }
 
   onSolutionInputChange(value: string) {
     const userInput = value;
     if (this.column) {
-      this.store.dispatch(updateUserInput({ columnId: this.column.id, userInput: userInput }));
+      this.store.dispatch(updateUserInput({ columnId: this.column.columnId, userInput: userInput }));
     }
   }
 
@@ -54,7 +54,7 @@ export class SolutionComponent implements OnInit, OnDestroy{
   onInputChange(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     if(this.column)
-    this.store.dispatch(updateUserInput({ columnId: this.column.id, userInput: value }));
+    this.store.dispatch(updateUserInput({ columnId: this.column.columnId, userInput: value }));
   }
 
   isDisabled() {

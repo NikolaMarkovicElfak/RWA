@@ -12,9 +12,5 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    const user = sessionStorage.getItem('user');
-    if (user) {
-      this.store.dispatch(registerSuccess({ user: JSON.parse(user) }));
-    }
   }
 }

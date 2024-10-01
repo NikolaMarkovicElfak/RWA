@@ -1,5 +1,6 @@
 <div class="score-container">
   <h3>Score: {{ score$ | async}}</h3>
+  <p>Vreme preostalo: {{ timeLeft$ | async}} sekundi</p>
 </div>
 <div *ngIf="currentQuestion$; else resultTemplate">
   <app-question [question]="(currentQuestion$|async)?.text"></app-question>
@@ -11,6 +12,7 @@
       (answerClicked)="onAnswerSelected(answer)"
     ></app-answer>
   </div>
+  <button (click)="onSkip()">PRESKOCI PITANJE</button>
 </div>
 <ng-template #resultTemplate>
   <div class="result-container">

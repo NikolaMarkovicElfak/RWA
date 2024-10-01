@@ -18,7 +18,7 @@ export const selectColumns = createSelector(
 
 // Selektor za dobijanje određene kolone prema njenom ID-u
 export const selectColumnById = (columnId: string) =>
-  createSelector(selectColumns, (columns) => columns.find(column => column.id === columnId));
+  createSelector(selectColumns, (columns) => columns.find(column => column.columnId === columnId));
 
 // Selektor za dobijanje konačnog rešenja igre
 export const selectFinalSolution = createSelector(
@@ -40,4 +40,9 @@ export const selectUserInput = createSelector(
 export const selectEnableInput = createSelector(
     selectAsocijacijaState,
     (state) => state.enableInput
+)
+
+export const selectScore = createSelector(
+  selectAsocijacijaState,
+  (state) => state.score
 )

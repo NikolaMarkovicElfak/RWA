@@ -1,4 +1,7 @@
 <div class="asocijacije-holder" mat-card>
+  <div class="score-display">
+    Current Score: {{ score$ | async }}
+  </div>
     <div class="solutions">
       <app-solution 
         *ngFor="let column of (asocijacija$ | async)?.columns"
@@ -9,7 +12,7 @@
   
     <div class="final-solution-container">
       <!-- Input for final solution when not revealed -->
-      <mat-form-field *ngIf="!(asocijacija$ | async)?.isRevealed" appearance="fill">
+      <mat-form-field *ngIf="!(asocijacija$ | async)?.isRevealed">
         <mat-label>Konačno rešenje</mat-label>
         <input 
           matInput 

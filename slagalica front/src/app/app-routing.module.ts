@@ -14,9 +14,9 @@ import { HighscoreListComponent } from './components/highscore-list/highscore-li
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: GamesPageComponent, canActivate: [AuthGuard] },
+  { path: 'games', component: GamesPageComponent, canActivate: [AuthGuard] },
   { path:'games/koznazna', component: KoznaznaPageComponent, canActivate: [AuthGuard]},
-  { path:'games/asocijacije', component: AsocijacijePageComponent,canActivate: [AuthGuard]},
+  { path:'games/asocijacije', component: AsocijacijePageComponent, canActivate: [AuthGuard]},
   { path:'highscore', component: HighscoreListComponent,canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'login' },
 ];

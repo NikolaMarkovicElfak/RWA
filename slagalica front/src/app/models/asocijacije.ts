@@ -4,12 +4,13 @@ export interface AsocijacijaTerm {
   }
   
   export interface AsocijacijaColumn {
-    id: string;      // 'A', 'B', 'C', 'D'
+    columnId: string;      // 'A', 'B', 'C', 'D'
     terms: AsocijacijaTerm[]; // List of terms
     solution: string; // Solution for this column
     isRevealed: boolean; // Indicates if the column solution is revealed
     revealAllTerms: boolean;
     enableInput: boolean;
+    points: number;
   }
   
   export interface AsocijacijaGame {

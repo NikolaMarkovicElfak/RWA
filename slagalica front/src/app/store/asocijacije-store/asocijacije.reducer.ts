@@ -4,11 +4,13 @@ import * as AsocijacijeActions from "./asocijacije.actions"
 import { booleanAttribute } from "@angular/core";
 
 
+
 export interface AsocijacijeState{
     asocijacija: AsocijacijaGame,
     enableInput: boolean,
     enableReveal: boolean,
-    revealAll: boolean
+    revealAll: boolean,
+    score: number,
     userInput: {
         columnId: string | null,
         input: string
@@ -20,6 +22,7 @@ export const initialState: AsocijacijeState = {
       enableInput: false,
       enableReveal: false,
       revealAll: false,
+      score: 0,
       userInput:{
         columnId: '',
         input: '',
@@ -33,17 +36,28 @@ export const asocijacijeReducer = createReducer(
         asocijacija,
       })),
     
-    on(AsocijacijeActions.loadAsocijacijuFailure, (state, { error }) => ({
-    ...state,
-    })),
+      on(AsocijacijeActions.loadAsocijacijuSuccess, (state, { asocijacija }) => {
+        const updatedColumns = asocijacija.columns.map(column => ({
+          ...column,
+          points: 25 // Ovde postavljamo fiksnu vrednost poena
+        }));
+      
+        return {
+          ...state,
+          asocijacija: {
+            ...asocijacija,
+            columns: updatedColumns,
+          },
+        };
+      }),
 
     on(AsocijacijeActions.revealTerm, (state, { columnId, termIndex }) => {
         const updatedColumns = state.asocijacija.columns.map((column) => {
-          if (column.id === columnId) {
+          if (column.columnId === columnId) {
             const updatedTerms = column.terms.map((term, index) =>
               index === termIndex ? { ...term, isRevealed: true } : term
             );
-            return { ...column, terms: updatedTerms, enableInput: true};
+            return { ...column, terms: updatedTerms, enableInput: true, points: column.points - 5};
           }
           return column;
         });
@@ -83,18 +97,24 @@ export const asocijacijeReducer = createReducer(
                         terms: revealedTerms
                     }
                   });
+                const pointsToAdd = updatedColumns.reduce((accumulator, column) => {
+                  return accumulator + column.points;
+                }, 0) + 5;                
                 return {
                     ...state,
                     asocijacija:{
                         ...state.asocijacija,
                         columns: isCorrect? updatedColumns : state.asocijacija.columns,
-                        isRevealed: isCorrect
+                        isRevealed: isCorrect,
                     },
-                    revealAll : isCorrect
+                    revealAll : isCorrect,
+                    enableInput: isCorrect,
+                    score: state.score + (isCorrect? pointsToAdd: 0)
                 }
             }
+            const pointsToAdd = state.asocijacija.columns.find(column => column.columnId === columnId)?.points || 0;
           const updatedColumns = state.asocijacija.columns.map((column) => {
-            if (column.id === columnId && column.solution.toLowerCase() === input.toLowerCase()) {
+            if (column.columnId === columnId && column.solution.toLowerCase() === input.toLowerCase()) {
                 const revealedTerms = column.terms.map(term => ({
                     ...term,
                     isRevealed: true
@@ -103,12 +123,13 @@ export const asocijacijeReducer = createReducer(
                 ...column,
                 isRevealed: true,
                 enableInput: false,
-                terms: revealedTerms
+                terms: revealedTerms,
+                points: 0,
               };
             }
             return column;
           });
-          const isMatching = updatedColumns.some(column => column.id === columnId && column.isRevealed)
+          const isMatching = updatedColumns.some(column => column.columnId === columnId && column.isRevealed)
           const isFinalMatching = state.asocijacija.enableInput || isMatching
           return {
             ...state,
@@ -121,7 +142,8 @@ export const asocijacijeReducer = createReducer(
               columnId: null,
               input: '',
             },
-            enableInput: isMatching
+            enableInput: isMatching,
+            score: isMatching? (state.score + pointsToAdd) : state.score,
           };
         }
         return state;

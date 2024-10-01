@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -36,6 +36,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HighscoreListComponent } from './components/highscore-list/highscore-list.component';
 import { HighscoreItemComponent } from './components/highscore-item/highscore-item.component';
 import { AsocijacijeEffects } from './store/asocijacije-store/asocijacije.effects';
+import { TimerEffects } from './store/timer-store/timer.effects';
+import { timerReducer } from './store/timer-store/timer.reducer';
 //import { asocijacijeReducer } from './store/asocijacije-store/asocijacije.reducer';
 
 @NgModule({
@@ -63,12 +65,14 @@ import { AsocijacijeEffects } from './store/asocijacije-store/asocijacije.effect
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    StoreModule.forRoot({question: questionsReducer, asocijacije: asocijacijeReducer, auth: authReducer}, {}),
+    StoreModule.forRoot({question: questionsReducer, asocijacije: asocijacijeReducer, auth: authReducer, timer: timerReducer}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -77,7 +81,7 @@ import { AsocijacijeEffects } from './store/asocijacije-store/asocijacije.effect
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
       connectInZone: true // If set to true, the connection is established within the Angular zone
     }),
-    EffectsModule.forRoot([QuizEffects, AuthEffects, AsocijacijeEffects]),
+    EffectsModule.forRoot([QuizEffects, AuthEffects, AsocijacijeEffects, TimerEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [

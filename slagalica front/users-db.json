@@ -147,68 +147,135 @@
       ]
     }
   ],
-  "asocijacije": {
-    "id": 1,
-    "columns": [
-      {
-        "id": "A",
-        "terms": [
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false }
-        ],
-        "solution": "Solution A",
-        "isRevealed": false,
-        "enableInput": false,
-        "revealAllTerms": false,
-        "userInput": ""
-      },
-      {
-      "id": "B",
-        "terms": [
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false }
-        ],
-        "solution": "Solution A",
-        "isRevealed": false,
-        "enableInput": false,
-        "revealAllTerms": false,
-        "userInput": ""
-      },
-      {
-      "id": "C",
-        "terms": [
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false }
-        ],
-        "solution": "Solution A",
-        "isRevealed": false,
-        "enableInput": false,
-        "revealAllTerms": false,
-        "userInput": ""
-      },
-      {
-      "id": "D",
-        "terms": [
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false },
-          { "text": "Term A1", "isRevealed": false }
-        ],
-        "solution": "Solution A",
-        "isRevealed": false,
-        "enableInput": false,
-        "revealAllTerms": false,
-        "userInput": ""
-      }
-    ],
-    "finalSolution": "Final Solution",
-    "enableInput": false,
-    "isRevealed": false
-  }
+  
+  "associations": 
+    {
+      "id": 1,
+      "finalSolution": "Kako sam upoznao vasu majku",
+      "enableInput": false,
+      "isRevealed": false,
+      "columns": [
+        {
+          "id": 1,
+          "columnId": "A",
+          "solution": "Solution A",
+          "isRevealed": false,
+          "revealAllTerms": false,
+          "enableInput": false,
+          "terms": [
+            {
+              "id": 1,
+              "text": "Lopata",
+              "isRevealed": false
+            },
+            {
+              "id": 2,
+              "text": "Srafciger",
+              "isRevealed": false
+            },
+            {
+              "id": 5,
+              "text": "kurac radi",
+              "isRevealed": false
+            },
+            {
+              "id": 6,
+              "text": "test",
+              "isRevealed": false
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "columnId": "B",
+          "solution": "Solution B",
+          "isRevealed": false,
+          "revealAllTerms": false,
+          "enableInput": false,
+          "terms": [
+            {
+              "id": 7,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 8,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 9,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 10,
+              "text": "test",
+              "isRevealed": false
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "columnId": "C",
+          "solution": "Solution C",
+          "isRevealed": false,
+          "revealAllTerms": false,
+          "enableInput": false,
+          "terms": [
+            {
+              "id": 11,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 12,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 13,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 14,
+              "text": "test",
+              "isRevealed": false
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "columnId": "D",
+          "solution": "Solution D",
+          "isRevealed": false,
+          "revealAllTerms": false,
+          "enableInput": false,
+          "terms": [
+            {
+              "id": 15,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 16,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 17,
+              "text": "test",
+              "isRevealed": false
+            },
+            {
+              "id": 18,
+              "text": "test",
+              "isRevealed": false
+            }
+          ]
+        }
+      ]
+    }
+
 }
