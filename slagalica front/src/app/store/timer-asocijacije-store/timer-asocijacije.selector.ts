@@ -1,17 +1,17 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { TimerState } from './timer.reducer';
+import { TimerAsocijacijeState } from './timer-asocijacije.reducer';
 
 // Selektor za izdvajanje celog stanja tajmera
-export const selectTimerState = createFeatureSelector<TimerState>('timer');
+export const selectTimerState = createFeatureSelector<TimerAsocijacijeState>('timerAsocijacije');
 
 // Selektor za izdvajanje vremena koje je preostalo
 export const selectTimeLeft = createSelector(
   selectTimerState,
-  (state: TimerState) => state.timeLeft
+  (state: TimerAsocijacijeState) => state.timeLeft
 );
 
 // Selektor za izdvajanje statusa da li tajmer radi
 export const selectIsRunning = createSelector(
   selectTimerState,
-  (state: TimerState) => state.isRunning
+  (state: TimerAsocijacijeState) => state.isRunning
 );

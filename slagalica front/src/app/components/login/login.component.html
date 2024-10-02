@@ -25,10 +25,11 @@
           Password must be at least 6 characters long
         </mat-error>
       </mat-form-field>
-
       <!-- Error Message -->
       <mat-error *ngIf="errorMessage$ | async" class="error-message">{{ errorMessage$ | async }}</mat-error>
-
+      <router-outlet></router-outlet>
+      <a routerLink="/register">Not a member?</a>
+      <br><br>
       <!-- Login Button -->
       <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
         Login

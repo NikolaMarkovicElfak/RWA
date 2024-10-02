@@ -1,10 +1,2 @@
-<nav>
-  <a routerLink="/">Home</a>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-  <a routerLink="/highscore">Highscore</a>
-  <a routerLink="/games">Games</a>
-  <a routerLink="/games/koznazna">Ko zna zna</a>
-  <a routerLink="/games/asocijacije">Asocijacije</a>
-</nav>
+<app-navbar *ngIf="!isLoginPage && !isRegisterPage"></app-navbar>
 <router-outlet/>

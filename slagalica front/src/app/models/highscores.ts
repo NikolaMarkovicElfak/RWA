@@ -1,6 +1,7 @@
+import { User } from "./users";
+
 export interface Highscore {
-    id: number;
-    username: string;
+    user: User;
     gameType: string;
     score: number;
   }

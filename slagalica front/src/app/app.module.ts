@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,8 +37,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HighscoreListComponent } from './components/highscore-list/highscore-list.component';
 import { HighscoreItemComponent } from './components/highscore-item/highscore-item.component';
 import { AsocijacijeEffects } from './store/asocijacije-store/asocijacije.effects';
-import { TimerEffects } from './store/timer-store/timer.effects';
-import { timerReducer } from './store/timer-store/timer.reducer';
+import { TimerEffects } from './store/timer-quiz-store/timer-quiz.effects';
+import { timerQuizReducer } from './store/timer-quiz-store/timer-quiz.reducer';
+import { TimerAsocijacijeEffects } from './store/timer-asocijacije-store/timer-asocijacije.effects';
+import { timerAsocijacijeReducer } from './store/timer-asocijacije-store/timer-asocijacije.reducer';
+import { highscoreReducer } from './store/highscore-store/highscore.reducer';
+import { HighscoreEffects } from './store/highscore-store/highscore.effects';
+import { NavbarComponent } from './components/navbar/navbar.component';
 //import { asocijacijeReducer } from './store/asocijacije-store/asocijacije.reducer';
 
 @NgModule({
@@ -59,7 +65,8 @@ import { timerReducer } from './store/timer-store/timer.reducer';
     LoginComponent,
     RegisterComponent,
     HighscoreListComponent,
-    HighscoreItemComponent
+    HighscoreItemComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +79,10 @@ import { timerReducer } from './store/timer-store/timer.reducer';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    StoreModule.forRoot({question: questionsReducer, asocijacije: asocijacijeReducer, auth: authReducer, timer: timerReducer}, {}),
+    MatDividerModule,
+    StoreModule.forRoot({question: questionsReducer, asocijacije: asocijacijeReducer,
+       auth: authReducer, timerQuiz: timerQuizReducer, timerAsocijacije: timerAsocijacijeReducer,
+       highscores: highscoreReducer}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -81,7 +91,7 @@ import { timerReducer } from './store/timer-store/timer.reducer';
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
       connectInZone: true // If set to true, the connection is established within the Angular zone
     }),
-    EffectsModule.forRoot([QuizEffects, AuthEffects, AsocijacijeEffects, TimerEffects]),
+    EffectsModule.forRoot([QuizEffects, AuthEffects, AsocijacijeEffects, TimerEffects, TimerAsocijacijeEffects, HighscoreEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [

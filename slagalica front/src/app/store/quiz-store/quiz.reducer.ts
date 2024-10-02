@@ -27,6 +27,7 @@ export const questionsReducer = createReducer(
     on(QuizActions.loadQuestionsSuccess, (state, { questions }) =>
         adapter.setAll(questions, {
           ...state,
+          score: 0,
           currentQuestionId: questions.length > 0 ? questions[Math.floor(Math.random() * questions.length)].id : null,
           showResult: false,
           toggle: true,
@@ -46,11 +47,12 @@ export const questionsReducer = createReducer(
     
       // Akcija za prelazak na sledeće pitanje
       on(QuizActions.nextQuestion, (state) => {
-        const remainingQuestionIds = state.ids.filter(id => id !== state.currentQuestionId);
+        const remainingQuestionIds = state.ids.filter(id => id !== state.currentQuestionId) as number[];
         const nextQuestionId = remainingQuestionIds.length > 0 ? remainingQuestionIds[Math.floor(Math.random() * remainingQuestionIds.length)] : null;
     
         return {
           ...state,
+          ids: remainingQuestionIds,
           currentQuestionId: nextQuestionId,
           selectedAnswer: null,
           toggle: true,
@@ -68,17 +70,10 @@ export const questionsReducer = createReducer(
           return {
             ...state,
             selectedAnswer: correctAnswer,
-            showResult: true,
             toggle: false,
           };
         }
     
         return state;
       }),
-    
-      // Akcija za završetak kviza
-      on(QuizActions.completeQuiz, (state) => ({
-        ...state,
-        showResult: true,
-      }))
 )

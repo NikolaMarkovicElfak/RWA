@@ -14,4 +14,8 @@ export class HighscoreService {
   getHighscores(): Observable<Highscore[]> {
     return this.http.get<Highscore[]>(this.apiUrl);
   }
+  
+  setHighscore(highscore: Highscore): Observable<Highscore> {
+    return this.http.post<Highscore>(this.apiUrl, highscore);
+  }
 }

@@ -8,3 +8,4 @@ export const loadAsocijacijuFailure = createAction('[Asocijacije] Load Asocijaci
 export const revealTerm = createAction('[Asocijacije] Reveal Term', props<{columnId: string, termIndex: number}>());
 export const updateUserInput = createAction('[Asocijacije] Update User Input',props<{ columnId: string; userInput: string }>());
 export const checkUserInput = createAction('[Asocijacije] Check User Input');
+export const endGame = createAction('[Asocijacije] End Asocijaciju')

@@ -34,6 +34,7 @@ export const asocijacijeReducer = createReducer(
     on(AsocijacijeActions.loadAsocijacijuSuccess, (state, { asocijacija }) => ({
         ...state,
         asocijacija,
+        score: 0
       })),
     
       on(AsocijacijeActions.loadAsocijacijuSuccess, (state, { asocijacija }) => {
@@ -147,5 +148,28 @@ export const asocijacijeReducer = createReducer(
           };
         }
         return state;
+      }),
+      on(AsocijacijeActions.endGame, (state) => {
+        const updatedColumns = state.asocijacija.columns.map((column) => {
+          const revealedTerms = column.terms.map(term => ({
+                  ...term,
+                  isRevealed: true
+                }));
+            return {
+              ...column,
+              isRevealed: true,
+              enableInput: false,
+              terms: revealedTerms
+          }
+        })
+        return {
+          ...state,
+          asocijacija:{
+            ...state.asocijacija,
+            columns:updatedColumns,
+            isRevealed: true
+          },
+          revealAll: true,
+        }
       })
 );

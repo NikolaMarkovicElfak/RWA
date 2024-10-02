@@ -1,9 +1,24 @@
-<mat-card class="highscore-list-card">
-    <mat-card-title>High Scores</mat-card-title>
-    <div class="highscore-items">
-      <app-highscore-item
-        *ngFor="let item of highscoreItems"
-        [item]="item">
-      </app-highscore-item>
-    </div>
-  </mat-card>
+<mat-card class="highscore-list">
+  <h2>Highscores</h2>
+  <mat-divider></mat-divider>
+
+  <div class="highscore-header">
+    <span>Username</span>
+    <span>Type</span>
+    <span>Score</span>
+  </div>
+  
+  <mat-divider></mat-divider>
+
+  <ng-container *ngIf="highscores$ | async as highscores; else loading">
+    <app-highscore-item *ngFor="let highscore of highscores"
+      [username]="highscore.user.username"
+      [type]="highscore.gameType"
+      [score]="highscore.score">
+    </app-highscore-item>
+  </ng-container>
+
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
+</mat-card>

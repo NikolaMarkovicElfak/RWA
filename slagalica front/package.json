@@ -21,11 +21,13 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@material-ui/core": "^4.12.4",
     "@ngrx/effects": "^18.0.2",
     "@ngrx/entity": "^18.0.2",
     "@ngrx/store": "^18.0.2",
     "@ngrx/store-devtools": "^18.0.2",
     "json-server": "^1.0.0-beta.2",
+    "rollup": "^4.23.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"

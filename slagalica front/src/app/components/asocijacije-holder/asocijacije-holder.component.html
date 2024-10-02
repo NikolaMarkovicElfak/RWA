@@ -1,40 +1,46 @@
-<div class="asocijacije-holder" mat-card>
+<div class="asocijacije-holder">
   <div class="score-display">
     Current Score: {{ score$ | async }}
-  </div>
-    <div class="solutions">
-      <app-solution 
-        *ngFor="let column of (asocijacija$ | async)?.columns"
-        [enableInput]="enableInput$ | async"
-        [column]="column">
-      </app-solution>
-    </div>
-  
-    <div class="final-solution-container">
-      <!-- Input for final solution when not revealed -->
-      <mat-form-field *ngIf="!(asocijacija$ | async)?.isRevealed">
-        <mat-label>Konačno rešenje</mat-label>
-        <input 
-          matInput 
-          [(ngModel)]="userFinalInput" 
-          (ngModelChange)="onInputChange($event)"
-          [disabled]="!(enableFinalInput && (enableInput$ | async))"
-          class="final-input"
-        />
-      </mat-form-field>
-  
-      <!-- Display final solution when revealed -->
-      <mat-form-field *ngIf="(asocijacija$ | async)?.isRevealed" appearance="fill">
-        <mat-label>Konačno rešenje</mat-label>
-        <input 
-          matInput 
-          [disabled]="true"
-          [value]="(asocijacija$ | async)?.finalSolution"
-          class="revealed-input"
-        />
-      </mat-form-field>
-    </div>
-  
-    <button mat-raised-button color="primary" (click)="submitSolution()">ENTER</button>
+    <p>Timer: {{timeLeft$ | async}}</p>
   </div>
   
+  <div class="solutions">
+    <app-solution 
+      *ngFor="let column of (asocijacija$ | async)?.columns"
+      [enableInput]="enableInput$ | async"
+      [column]="column">
+    </app-solution>
+  </div>
+
+  <div class="final-solution-container">
+    <mat-form-field *ngIf="!(asocijacija$ | async)?.isRevealed">
+      <mat-label>Konačno rešenje</mat-label>
+      <input 
+        matInput 
+        [(ngModel)]="userFinalInput" 
+        (ngModelChange)="onInputChange($event)"
+        [disabled]="!(enableFinalInput && (enableInput$ | async))"
+        class="final-input"
+      />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="(asocijacija$ | async)?.isRevealed" appearance="fill">
+      <mat-label>Konačno rešenje</mat-label>
+      <input 
+        matInput 
+        [disabled]="true"
+        [value]="(asocijacija$ | async)?.finalSolution"
+        class="revealed-input"
+      />
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="submitSolution()">ENTER</button>
+</div>
+
+
+<div *ngIf="(asocijacija$ | async)?.isRevealed">
+  <h2>Čestitamo! Završili ste asocijaciju!</h2>
+  <button (click)="restartGame()">Igraj ponovo</button>
+  <button (click)="goToHighScores()">Idite na High Scores</button>
+</div>

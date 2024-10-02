@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AsocijacijeService {
 
-  apiUrl = 'http://localhost:3000/associations/1';
+  apiUrl = 'http://localhost:3000/associations';
 
   constructor(private http: HttpClient) {}
 
   getAsocijacija(): Observable<AsocijacijaGame> {
-    return this.http.get<AsocijacijaGame>(this.apiUrl)
+    return this.http.get<AsocijacijaGame>(this.apiUrl + '/random')
   }
 }

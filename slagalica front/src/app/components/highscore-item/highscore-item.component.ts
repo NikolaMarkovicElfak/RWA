@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Highscore } from '../../models/highscores';
 
 @Component({
   selector: 'app-highscore-item',
@@ -7,5 +6,7 @@ import { Highscore } from '../../models/highscores';
   styleUrl: './highscore-item.component.css'
 })
 export class HighscoreItemComponent {
-  @Input() item: Highscore | null = null;
+  @Input() username: string = '';
+  @Input() type: string = '';
+  @Input() score: number = 0;
 }
